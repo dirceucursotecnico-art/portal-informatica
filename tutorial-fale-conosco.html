@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Passo a Passo – Fale Conosco com PHP e MySQLi</title>
+<style>
+@page { margin: 18mm 15mm; }
+body { font-family: Arial, sans-serif; color:#243447; line-height:1.5; font-size:12pt; }
+h1 { color:#174d35; border-bottom:3px solid #174d35; padding-bottom:8px; }
+h2 { color:#174d35; margin-top:22px; border-bottom:1px solid #bcd0c4; padding-bottom:5px; }
+h3 { color:#2f6b4f; }
+pre { background:#f3f5f4; border-left:4px solid #174d35; padding:12px; white-space:pre-wrap; font-size:9.5pt; }
+code { font-family: Consolas, monospace; }
+ul, ol { margin-top:6px; }
+.aviso { background:#fff4d6; border:1px solid #d8b968; padding:10px; border-radius:5px; }
+.passo { background:#edf5f0; border-radius:6px; padding:10px 12px; margin:12px 0; }
+.small { font-size:9pt; color:#666; }
+</style>
+</head>
+<body>
+<h1>Passo a passo: Fale Conosco com PHP e MySQLi</h1>
+<p><strong>Projeto:</strong> Portal do Técnico em Informática – Maria Barbosa Leite<br>
+<strong>Ambiente:</strong> XAMPP, Apache, MySQL/MariaDB e PHP</p>
+
+<h2>1. Preparar o XAMPP</h2>
+<ol>
+<li>Abra o painel de controle do XAMPP.</li>
+<li>Clique em <strong>Start</strong> no Apache.</li>
+<li>Clique em <strong>Start</strong> no MySQL.</li>
+<li>Aguarde os dois ficarem verdes.</li>
+<li>Acesse <code>http://localhost/Projetos/index.html</code>.</li>
+</ol>
+
+<h2>2. Adicionar o botão ao menu principal</h2>
+<p>Abra <code>index.html</code>. Dentro da área com <code>id="menuLateral"</code>, localize o link “Sobre o site” e adicione, logo depois:</p>
+<pre>&lt;a href="sobre.html"&gt;ℹ️ Sobre o site&lt;/a&gt;
+&lt;a href="fale-conosco.html"&gt;💬 Fale Conosco&lt;/a&gt;</pre>
+
+<h2>3. Criar a página HTML do formulário</h2>
+<p>Crie na pasta do projeto o arquivo <code>fale-conosco.html</code>.</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Fale Conosco&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link rel="stylesheet" href="contato.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Fale Conosco&lt;/h1&gt;
+
+    &lt;form action="contato.php" method="post"&gt;
+        &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+        &lt;input type="text" id="nome" name="nome" required&gt;
+
+        &lt;label for="email"&gt;E-mail:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+
+        &lt;label for="telefone"&gt;Telefone:&lt;/label&gt;
+        &lt;input type="tel" id="telefone" name="telefone" required&gt;
+
+        &lt;label for="mensagem"&gt;Dúvida ou reclamação:&lt;/label&gt;
+        &lt;textarea id="mensagem" name="mensagem" required&gt;&lt;/textarea&gt;
+
+        &lt;button type="submit"&gt;Enviar mensagem&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h2>4. Entender os atributos importantes</h2>
+<ul>
+<li><code>action="contato.php"</code>: indica o arquivo PHP que receberá os dados.</li>
+<li><code>method="post"</code>: envia os dados pelo corpo da requisição.</li>
+<li><code>name="nome"</code>, <code>name="email"</code>, <code>name="telefone"</code> e <code>name="mensagem"</code>: são os nomes usados pelo PHP no <code>$_POST</code>.</li>
+<li><code>required</code>: impede o envio vazio pelo navegador.</li>
+</ul>
+
+<h2>5. Criar o arquivo PHP</h2>
+<p>Na mesma pasta, crie <code>contato.php</code>.</p>
+<pre>&lt;?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    exit('Acesso inválido.');
+}
+
+$nome = trim($_POST['nome'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$telefone = trim($_POST['telefone'] ?? '');
+$mensagem = trim($_POST['mensagem'] ?? '');
+
+if ($nome === '' || $email === '' || $telefone === '' || $mensagem === '') {
+    exit('Preencha todos os campos obrigatórios.');
+}
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    exit('Informe um e-mail válido.');
+}
+?&gt;</pre>
+
+<h2>6. Conectar ao MySQLi</h2>
+<p>Os dados padrão do XAMPP normalmente são:</p>
+<pre>$servidor = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'portal_mbl';
+
+$mysqli = new mysqli($servidor, $usuario, $senha);
+
+if ($mysqli-&gt;connect_error) {
+    exit('Erro na conexão: ' . $mysqli-&gt;connect_error);
+}
+
+$mysqli-&gt;set_charset('utf8mb4');</pre>
+
+<h2>7. Criar o banco e a tabela pelo PHP</h2>
+<pre>$mysqli-&gt;query(
+    "CREATE DATABASE IF NOT EXISTS `$banco`
+     CHARACTER SET utf8mb4
+     COLLATE utf8mb4_unicode_ci"
+);
+$mysqli-&gt;select_db($banco);
+
+$sqlTabela = "CREATE TABLE IF NOT EXISTS contatos (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    mensagem VARCHAR(1000) NOT NULL,
+    data_envio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci";
+
+$mysqli-&gt;query($sqlTabela);</pre>
+
+<h2>8. Inserir os dados com segurança</h2>
+<p>Não coloque os dados diretamente dentro do SQL. Utilize consulta preparada:</p>
+<pre>$sql = 'INSERT INTO contatos
+         (nome, email, telefone, mensagem)
+         VALUES (?, ?, ?, ?)';
+
+$stmt = $mysqli-&gt;prepare($sql);
+$stmt-&gt;bind_param('ssss', $nome, $email, $telefone, $mensagem);
+
+if ($stmt-&gt;execute()) {
+    echo 'Mensagem enviada com sucesso!';
+} else {
+    echo 'Não foi possível salvar a mensagem.';
+}
+
+$stmt-&gt;close();
+$mysqli-&gt;close();</pre>
+
+<div class="aviso">
+<strong>Por que usar <code>bind_param</code>?</strong><br>
+Protege contra SQL Injection, pois separa o comando SQL dos dados digitados pelo usuário.
+</div>
+
+<h2>9. Melhorar o visual com CSS</h2>
+<p>Crie <code>contato.css</code> e conecte no HTML:</p>
+<pre>&lt;link rel="stylesheet" href="contato.css"&gt;</pre>
+<p>Exemplo básico:</p>
+<pre>.contato-form {
+    max-width: 620px;
+    margin: 40px auto;
+    display: grid;
+    gap: 16px;
+}
+
+input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #cbd8d1;
+    border-radius: 8px;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+button {
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #174d35;
+    color: white;
+    cursor: pointer;
+}</pre>
+
+<h2>10. Testar o formulário</h2>
+<ol>
+<li>Inicie Apache e MySQL no XAMPP.</li>
+<li>Abra o menu lateral e clique em <strong>Fale Conosco</strong>.</li>
+<li>Preencha nome, e-mail, telefone e mensagem.</li>
+<li>Clique em <strong>Enviar mensagem</strong>.</li>
+<li>Acesse o phpMyAdmin em <code>http://localhost/phpmyadmin</code>.</li>
+<li>Abra <code>portal_mbl</code> e depois <code>contatos</code>.</li>
+<li>Clique em <strong>Visualizar</strong> para conferir os registros.</li>
+</ol>
+
+<h2>11. Corrigir problemas comuns</h2>
+<h3>Erro de conexão</h3>
+<ul>
+<li>Confirme que o MySQL está iniciado no XAMPP.</li>
+<li>Confirme o usuário <code>root</code> e senha vazia.</li>
+<li>Se criou senha no MySQL, configure-a em <code>$senha</code>.</li>
+</ul>
+
+<h3>Acentuação incorreta</h3>
+<ul>
+<li>Inclua <code>&lt;meta charset="UTF-8"&gt;</code> nas páginas HTML.</li>
+<li>Use <code>$mysqli-&gt;set_charset('utf8mb4');</code>.</li>
+<li>Use banco e tabela com codificação <code>utf8mb4_unicode_ci</code>.</li>
+</ul>
+
+<h3>Página não abre</h3>
+<ul>
+<li>Confirme que os arquivos estão dentro de <code>C:\xampp\htdocs\Projetos</code>.</li>
+<li>Não abra pelo caminho do VS Code se estiver usando PHP; use o endereço <code>localhost</code>.</li>
+<li>Confira se o nome dos arquivos corresponde exatamente ao <code>href</code> e ao <code>action</code>.</li>
+</ul>
+
+<h2>Resumo dos arquivos</h2>
+<ul>
+<li><code>index.html</code>: contém o link do menu.</li>
+<li><code>fale-conosco.html</code>: contém o formulário.</li>
+<li><code>contato.css</code>: estiliza o formulário.</li>
+<li><code>contato.php</code>: valida e grava os dados no banco.</li>
+<li><code>portal_mbl.contatos</code>: tabela que recebe os registros.</li>
+</ul>
+
+<p class="small">Conteúdo elaborado para aprendizagem de HTML, CSS, PHP e MySQLi.</p>
+</body>
+</html>

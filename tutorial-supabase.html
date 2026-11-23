@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como usar o Supabase gratuitamente</title>
+<style>
+@page { margin: 18mm 15mm; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; color: #243447; line-height: 1.55; font-size: 12pt; background: #f7faf8; }
+main { max-width: 900px; margin: 24px auto; background: white; border-radius: 10px; padding: 36px; box-shadow: 0 4px 20px rgba(23,77,53,.10); }
+h1 { color: #174d35; border-bottom: 3px solid #174d35; padding-bottom: 8px; }
+h2 { color: #174d35; margin-top: 28px; border-bottom: 1px solid #bcd0c4; padding-bottom: 5px; }
+h3 { color: #2f6b4f; }
+pre { background: #111827; color: #f8fafc; border-radius: 6px; padding: 14px; white-space: pre-wrap; font-size: 9.5pt; overflow-wrap: anywhere; }
+code { font-family: Consolas, monospace; }
+ul, ol { margin-top: 6px; }
+.aviso { background: #fff4d6; border: 1px solid #d8b968; padding: 12px; border-radius: 6px; }
+.destaque { background: #edf5f0; border-left: 5px solid #174d35; border-radius: 6px; padding: 12px 16px; margin: 12px 0; }
+.passos { counter-reset: item; list-style: none; padding-left: 0; }
+.passos li { counter-increment: item; margin: 14px 0; padding: 12px 14px 12px 58px; position: relative; background: #f5f8f6; border-radius: 8px; }
+.passos li::before { content: counter(item); position: absolute; left: 14px; top: 12px; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background: #174d35; color: white; font-weight: bold; }
+.small { font-size: 9pt; color: #666; }
+a { color: #174d35; }
+@media (max-width: 700px) { main { margin: 0; border-radius: 0; padding: 22px 16px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Como usar o Supabase gratuitamente</h1>
+<p><strong>Projeto:</strong> Portal do Técnico em Informática – Maria Barbosa Leite</p>
+
+<div class="destaque">
+O Supabase oferece PostgreSQL, autenticação, armazenamento e APIs. Ele pode substituir o MySQL local do formulário <strong>Fale Conosco</strong>, permitindo que o site publicado na Vercel envie mensagens para um banco na nuvem.
+</div>
+
+<h2>1. Criar uma conta no Supabase</h2>
+<ol class="passos">
+<li>Acesse <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">supabase.com</a>.</li>
+<li>Clique em <strong>Start your project</strong> ou <strong>Sign in</strong>.</li>
+<li>Entre com GitHub, Google ou outro método disponível.</li>
+<li>Clique em <strong>New project</strong>.</li>
+<li>Escolha ou crie uma organização.</li>
+<li>Digite o nome do projeto, por exemplo <code>portal-informatica</code>.</li>
+<li>Crie uma senha forte para o banco e guarde-a em local seguro.</li>
+<li>Escolha uma região próxima do público que usará o site.</li>
+<li>Clique em <strong>Create project</strong> e aguarde a preparação.</li>
+</ol>
+
+<div class="aviso">
+Limites e regiões do plano gratuito podem mudar. Consulte a página oficial de preços antes de publicar um projeto que precise de disponibilidade garantida.
+</div>
+
+<h2>2. Criar a tabela de contatos</h2>
+<p>Dentro do projeto, abra <strong>SQL Editor</strong>, clique em <strong>New query</strong> e execute:</p>
+<pre>create table public.contatos (
+  id bigint generated always as identity primary key,
+  created_at timestamptz not null default now(),
+  nome varchar(100) not null,
+  email varchar(150) not null,
+  telefone varchar(20) not null,
+  mensagem varchar(1000) not null
+);</pre>
+
+<p>Depois, crie regras de segurança no mesmo SQL Editor:</p>
+<pre>alter table public.contatos enable row level security;
+
+create policy "Permitir envio público"
+on public.contatos
+for insert
+to anon
+with check (char_length(trim(nome)) &gt; 0
+  and char_length(trim(email)) &gt; 0
+  and char_length(trim(telefone)) &gt; 0
+  and char_length(trim(mensagem)) &gt; 0);
+
+create policy "Somente usuário autenticado pode ler"
+on public.contatos
+for select
+to authenticated
+using (true);
+
+grant insert on public.contatos to anon;
+grant usage, select on sequence public.contatos_id_seq to anon;</pre>
+
+<div class="aviso">
+Não conceda permissões de leitura ao usuário público (<code>anon</code>). Assim, visitantes poderão enviar mensagens, mas não visualizar registros dos demais usuários.
+</div>
+
+<h2>3. Copiar as credenciais públicas</h2>
+<ol>
+<li>Abra <strong>Project Settings</strong>.</li>
+<li>Acesse <strong>API</strong> ou a seção de conexão mostrada pelo painel.</li>
+<li>Copie a <strong>Project URL</strong>.</li>
+<li>Copie a chave pública identificada como <strong>Publishable key</strong>, ou a chave <strong>anon</strong> em painéis que ainda usam a versão anterior.</li>
+</ol>
+
+<div class="aviso">
+A chave pública pode ficar no JavaScript do navegador, mas ela não deve substituir as regras de segurança. Nunca publique a chave secreta <code>service_role</code>, senhas ou dados administrativos no código do site.
+</div>
+
+<h2>4. Conectar o formulário HTML</h2>
+<p>O Supabase fornece uma biblioteca JavaScript. Inclua no <code>fale-conosco.html</code>, antes do fechamento de <code>&lt;/body&gt;</code>:</p>
+<pre>&lt;script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"&gt;&lt;/script&gt;
+&lt;script src="supabase-contato.js"&gt;&lt;/script&gt;</pre>
+
+<p>Altere o formulário para não enviar ao arquivo PHP:</p>
+<pre>&lt;form id="contato-form" class="contato-form"&gt;</pre>
+
+<p>Crie o arquivo <code>supabase-contato.js</code> com:</p>
+<pre>const SUPABASE_URL = 'COLAR_AQUI_A_PROJECT_URL';
+const SUPABASE_KEY = 'COLAR_AQUI_A_CHAVE_PUBLICA';
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+const formulario = document.getElementById('contato-form');
+
+formulario.addEventListener('submit', async (evento) =&gt; {
+    evento.preventDefault();
+
+    const dados = {
+        nome: document.getElementById('nome').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        mensagem: document.getElementById('mensagem').value.trim()
+    };
+
+    if (!dados.nome || !dados.email || !dados.telefone || !dados.mensagem) {
+        alert('Preencha todos os campos.');
+        return;
+    }
+
+    const botao = formulario.querySelector('button[type="submit"]');
+    botao.disabled = true;
+
+    const { error } = await supabase
+        .from('contatos')
+        .insert([dados]);
+
+    if (error) {
+        console.error(error);
+        alert('Não foi possível enviar a mensagem. Tente novamente.');
+    } else {
+        formulario.reset();
+        alert('Mensagem enviada com sucesso!');
+    }
+
+    botao.disabled = false;
+});</pre>
+
+<h2>5. Testar no XAMPP</h2>
+<ol>
+<li>Inicie o Apache no XAMPP.</li>
+<li>Abra <code>http://localhost/Projetos/fale-conosco.html</code>.</li>
+<li>Preencha os quatro campos.</li>
+<li>Clique em <strong>Enviar mensagem</strong>.</li>
+<li>Abra o Supabase em <strong>Table Editor</strong>.</li>
+<li>Selecione <code>contatos</code> e confira o registro novo.</li>
+</ol>
+
+<h2>6. Testar na Vercel</h2>
+<ol>
+<li>Envie o novo código ao GitHub.</li>
+<li>Faça o deploy na Vercel ou aguarde o deploy automático.</li>
+<li>Acesse o endereço publicado.</li>
+<li>Abra a página <strong>Fale Conosco</strong>.</li>
+<li>Envie uma mensagem de teste.</li>
+<li>Confira a mensagem no painel do Supabase.</li>
+</ol>
+
+<h2>7. Visualizar os contatos enviados</h2>
+<p>O painel administrativo pode ler registros com a chave pública porque existe uma política somente para usuários autenticados. A opção mais segura é:</p>
+<ol>
+<li>Criar uma página ou painel protegido por login.</li>
+<li>Ativar autenticação no Supabase.</li>
+<li>Permitir o cadastro ou adicionar usuários no <strong>Authentication</strong>.</li>
+<li>Ler os dados com <code>supabase.auth.getUser()</code> e usar a sessão autenticada.</li>
+</ol>
+
+<p>Também é possível consultar diretamente no <strong>Table Editor</strong> como dono do projeto, sem usar a chave pública.</p>
+
+<h2>Problemas comuns</h2>
+<h3>Erro de política RLS</h3>
+<p>Confirme que RLS está ativado, que existe a política de inserção para <code>anon</code> e que o usuário recebeu permissão de <code>insert</code>.</p>
+
+<h3>Erro de chave ou URL</h3>
+<p>Verifique se copiou a Project URL e a chave pública corretas, sem aspas ou espaços extras.</p>
+
+<h3>Mensagem não aparece no Table Editor</h3>
+<p>Abra o Console do navegador e confira a mensagem completa do erro. Confirme os nomes dos campos e o nome da tabela.</p>
+
+<h3>Erro de CORS</h3>
+<p>Verifique se o domínio está correto e se o projeto Supabase está ativo. Um erro de URL ou chave normalmente aparece como falha de autenticação, não como problema do HTML.</p>
+
+<h2>Boas práticas</h2>
+<ul>
+<li>Valide os dados no navegador e no banco.</li>
+<li>Limite o tamanho dos campos.</li>
+<li>Use HTTPS.</li>
+<li>Ative RLS em todas as tabelas públicas.</li>
+<li>Não habilite leitura pública de dados pessoais.</li>
+<li>Nunca publique a chave <code>service_role</code>.</li>
+<li>Faça backup antes de alterar a estrutura da tabela.</li>
+<li>Monitore o uso do projeto no painel do Supabase.</li>
+</ul>
+
+<h2>Checklist final</h2>
+<ul>
+<li>□ Projeto criado no Supabase.</li>
+<li>□ Senha do banco armazenada em local seguro.</li>
+<li>□ Tabela <code>contatos</code> criada.</li>
+<li>□ RLS ativado.</li>
+<li>□ Política permite somente inserção pública.</li>
+<li>□ Leitura restrita a usuários autenticados.</li>
+<li>□ Project URL e chave pública configuradas no JavaScript.</li>
+<li>□ Formulário não usa mais <code>contato.php</code>.</li>
+<li>□ Teste enviado pelo XAMPP.</li>
+<li>□ Teste enviado pelo endereço da Vercel.</li>
+</ul>
+
+<p class="small">Tutorial para integrar um formulário estático a um banco PostgreSQL gratuito do Supabase.</p>
+</main>
+</body>
+</html>

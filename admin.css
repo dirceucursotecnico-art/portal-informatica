@@ -1,0 +1,487 @@
+
+/* =========================================
+   PAINEL ADMINISTRATIVO
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.admin-page {
+    margin: 0;
+    padding: 35px 18px 60px;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+    color: #263445;
+
+    /* IMAGEM DE FUNDO ORIGINAL */
+    background-image:
+        linear-gradient(
+            rgba(226, 237, 247, 0.42),
+            rgba(226, 237, 247, 0.42)
+        ),
+        url("informatica.jpeg");
+
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: fixed, fixed;
+}
+
+/* =========================================
+   ÁREA CENTRAL
+========================================= */
+
+.admin-container {
+    width: 100%;
+    max-width: 735px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.admin-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 17px 22px;
+    margin-bottom: 14px;
+
+    background: rgba(255, 255, 255, 0.91);
+
+    border: 1px solid rgba(30, 74, 115, 0.8);
+    border-radius: 13px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.13);
+
+    backdrop-filter: blur(5px);
+}
+
+.admin-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 65px;
+    height: 58px;
+
+    background: #124675;
+    color: white;
+
+    border-radius: 9px;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.admin-cabecalho h1 {
+    margin: 0;
+
+    color: #153f68;
+    font-size: 29px;
+    text-align: left;
+}
+
+.admin-cabecalho p {
+    margin: 5px 0 0;
+
+    color: #36536d;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* =========================================
+   CARTÕES DAS SEÇÕES
+========================================= */
+
+.painel-card {
+    width: 100%;
+
+    padding: 10px 17px 17px;
+    margin-bottom: 14px;
+
+    background: rgba(255, 255, 255, 0.91);
+
+    border: 1px solid rgba(30, 74, 115, 0.65);
+    border-radius: 13px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.14);
+
+    backdrop-filter: blur(5px);
+}
+
+/* =========================================
+   TÍTULOS DAS SEÇÕES
+========================================= */
+
+.titulo-card {
+    margin: 0 0 13px;
+    padding: 10px 13px;
+
+    background: linear-gradient(
+        90deg,
+        #123e69,
+        #1c598a
+    );
+
+    color: white;
+
+    border-radius: 7px;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+.campo {
+    width: 100%;
+    margin-bottom: 11px;
+}
+
+.admin-page label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #24384b;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.admin-page input,
+.admin-page textarea,
+.admin-page select {
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #bdcbd8;
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    color: #263445;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+/* ALTURA DOS CAMPOS */
+
+.admin-page input,
+.admin-page select {
+    height: 39px;
+}
+
+.admin-page textarea {
+    min-height: 82px;
+    resize: vertical;
+}
+
+/* EFEITO AO SELECIONAR */
+
+.admin-page input:focus,
+.admin-page textarea:focus,
+.admin-page select:focus {
+    border-color: #2477b9;
+
+    box-shadow: 0 0 0 3px rgba(36, 119, 185, 0.13);
+}
+
+/* CAMPOS DESATIVADOS */
+
+.admin-page input:disabled,
+.admin-page textarea:disabled,
+.admin-page select:disabled {
+    background: #e6ebf0;
+    color: #929eaa;
+
+    cursor: not-allowed;
+}
+
+/* =========================================
+   TEXTOS AUXILIARES
+========================================= */
+
+.ajuda {
+    margin: 5px 0 0;
+
+    color: #34536f;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.texto-gerenciamento {
+    margin: 8px 0 14px;
+
+    color: #42576b;
+    font-size: 13px;
+}
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.admin-page button {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-principal {
+    display: block;
+
+    width: 100%;
+    padding: 11px;
+
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #124675;
+    color: white;
+
+    font-size: 14px;
+}
+
+.btn-principal:hover {
+    background: #1d649f;
+    transform: translateY(-1px);
+}
+
+.btn-secundario {
+    display: block;
+
+    width: 100%;
+    padding: 11px;
+
+    margin-top: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #438fc9;
+    color: white;
+
+    font-size: 14px;
+}
+
+.btn-secundario:hover {
+    background: #3176ac;
+    transform: translateY(-1px);
+}
+
+/* ORGANIZAÇÃO DOS BOTÕES */
+
+.acoes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+}
+
+/* =========================================
+   MENSAGENS
+========================================= */
+
+#mensagem,
+#mensagemNovaNoticia {
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* =========================================
+   GERENCIAMENTO DE NOTÍCIAS
+========================================= */
+
+#gerenciarNoticias {
+    width: 100%;
+    margin: 15px auto 0;
+}
+
+.admin-noticia {
+    width: 100%;
+
+    padding: 17px;
+    margin-bottom: 13px;
+
+    background: rgba(246, 250, 253, 0.97);
+
+    border: 1px solid #cad8e5;
+    border-left: 5px solid #1c598a;
+
+    border-radius: 9px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.admin-noticia h3 {
+    color: #164675;
+    font-size: 16px;
+
+    margin: 0 0 12px;
+}
+
+.admin-noticia input,
+.admin-noticia textarea {
+    width: 100%;
+    margin-bottom: 9px;
+}
+
+.admin-noticia button {
+    width: 100%;
+    padding: 10px;
+
+    margin: 6px 0;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #1c598a;
+    color: white;
+}
+
+.admin-noticia button:hover {
+    background: #2878b4;
+}
+
+.admin-noticia .btn-excluir-noticia {
+    background: #b74444;
+}
+
+.admin-noticia .btn-excluir-noticia:hover {
+    background: #942f2f;
+}
+
+/* =========================================
+   BOTÃO SAIR
+========================================= */
+
+.btn-sair {
+    display: block;
+
+    width: 175px;
+    padding: 12px;
+
+    margin: 10px 0 0 auto;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #123e69;
+    color: white;
+
+    font-size: 13px;
+}
+
+.btn-sair:hover {
+    background: #2878b4;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    .admin-page {
+        padding: 18px 10px 35px;
+    }
+
+    .admin-cabecalho {
+        gap: 10px;
+        padding: 13px;
+    }
+
+    .admin-icone {
+        width: 48px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .admin-cabecalho h1 {
+        font-size: 20px;
+    }
+
+    .admin-cabecalho p {
+        font-size: 11px;
+    }
+
+    .painel-card {
+        padding: 9px 11px 13px;
+    }
+
+    .titulo-card {
+        font-size: 15px;
+    }
+
+    .btn-sair {
+        width: 100%;
+    }
+}
+
+/* BOTÃO SAIR FLUTUANTE */
+
+.admin-page .btn-sair {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 99999;
+
+    padding: 15px 25px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #c62828;
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+    transition: 0.3s;
+}
+
+.admin-page .btn-sair:hover {
+    background: #991b1b;
+    transform: translateY(-3px);
+}
+
+/* EVITA QUE O BOTÃO CUBRA O FINAL DO PAINEL */
+
+.admin-page .admin-container {
+    padding-bottom: 100px;
+}
+
+@media (max-width: 600px) {
+    .admin-page .btn-sair {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 18px;
+    }
+}

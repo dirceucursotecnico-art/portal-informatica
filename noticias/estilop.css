@@ -1,0 +1,1093 @@
+
+/* =====================================================
+   CONFIGURAÇÕES GERAIS
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", Arial, sans-serif;
+    background: #ffffff;
+    color: #092c55;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
+/
+.cabecalho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+
+    background: transparent;
+    opacity: 1 !;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+}
+
+.titulo-site {
+    text-align: center;
+}
+
+.titulo-site h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #003366;
+    text-transform: uppercase;
+}
+
+.titulo-site p {
+    margin: 4px 0 0;
+    font-size: 15px;
+    color: #003366;
+}
+
+
+.titulo-site {
+    text-align: center;
+}
+
+.titulo-site h1 {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    color: #222;
+
+    text-transform: uppercase;
+
+}
+
+.titulo-site p {
+    margin: 4px 0 0;
+
+    font-size: 15px;
+
+    color: #555;
+}
+
+
+/* MENU DE NAVEGAÇÃO */
+
+.cabecalho .menu {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.cabecalho .menu a {
+    color: #073f43;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+.cabecalho .menu a:hover {
+    color: #008fe5;
+}
+
+/* BOTÃO HAMBÚRGUER */
+
+.cabecalho .menu-btn {
+    position: absolute;
+
+    left: 7px;
+    top: 6px;
+
+    width: 22px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #000000;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 0;
+
+    font-size: 23px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.cabecalho .menu-btn:hover {
+    background: #222222;
+}
+
+
+/* =====================================================
+   MENU LATERAL
+===================================================== */
+
+.menu-lateral {
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 260px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    z-index: 1000;
+
+    padding: 60px 20px 20px;
+
+    flex-direction: column;
+    gap: 20px;
+
+    box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+}
+
+.menu-lateral.aberto {
+    display: flex;
+}
+
+.menu-lateral a {
+    color: #073f43;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.menu-lateral a:hover {
+    color: #008fe5;
+}
+
+.menu-lateral .fechar {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    background: none;
+    border: none;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   BANNER
+===================================================== */
+
+.banner {
+    min-height: 325px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    padding: 45px 9.5%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 27, 57, 0.98) 0%,
+            rgba(2, 36, 72, 0.95) 42%,
+            rgba(0, 45, 91, 0.65) 100%
+        ),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=90");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-conteudo {
+    width: 500px;
+    position: relative;
+    z-index: 2;
+}
+
+.subtitulo {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.banner h2 {
+    color: white;
+
+    font-size: 40px;
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.banner h2 strong {
+    display: block;
+
+    color: #009eff;
+}
+
+.banner p {
+    color: white;
+
+    max-width: 470px;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    margin-bottom: 17px;
+}
+
+/* BOTÃO DO BANNER */
+
+.menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 11px 23px;
+
+    border-radius: 25px;
+
+    color: white;
+    background: #079ceb;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: #007bc1;
+    transform: translateY(-2px);
+}
+
+.menu-btn span {
+    font-size: 19px;
+}
+
+.frase-banner {
+    position: absolute;
+
+    left: 51%;
+    top: 82px;
+
+    color: white;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 27px;
+    line-height: 1.03;
+
+    font-weight: 700;
+
+    font-style: italic;
+
+    transform: rotate(-5deg);
+
+    text-shadow: 0 2px 3px rgba(0,0,0,.4);
+}
+
+
+/* =====================================================
+   TÍTULOS DAS SEÇÕES
+===================================================== */
+
+.titulo-secao {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 5px;
+}
+
+.titulo-secao span {
+    display: block;
+
+    width: 27px;
+    height: 5px;
+
+    background: #079eea;
+}
+
+.titulo-secao p {
+    font-size: 11px;
+    font-weight: 800;
+
+    color: #123c65;
+}
+
+.titulo-branco p {
+    color: white;
+}
+
+
+/* =====================================================
+   SOBRE O CURSO
+===================================================== */
+
+.sobre {
+    min-height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 60px;
+
+    padding: 28px 9.5% 30px;
+
+    background: #ffffff;
+}
+
+.sobre-texto {
+    width: 52%;
+}
+
+.sobre h2 {
+    color: #092d57;
+
+    font-size: 28px;
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+.sobre-texto > p {
+    max-width: 550px;
+
+    color: #153a61;
+
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.imagem-sobre {
+    width: 43%;
+
+    position: relative;
+}
+
+.imagem-sobre img {
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    border: 2px solid #063e75;
+
+    transform: rotate(-1deg);
+}
+
+
+/* =====================================================
+   INFORMAÇÕES DO CURSO
+===================================================== */
+
+.informacoes {
+    display: flex;
+
+    margin-top: 22px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 175px;
+
+    padding-right: 20px;
+    margin-right: 20px;
+
+    border-right: 1px solid #d9e1e9;
+}
+
+.info:last-child {
+    border-right: none;
+}
+
+.icone {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1264bf;
+
+    color: white;
+
+    font-size: 21px;
+}
+
+.info h3 {
+    color: #123e68;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.info p {
+    color: #163f69;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 2px;
+}
+
+.info small {
+    color: #48657d;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   PROJETOS
+===================================================== */
+
+.cards-projetos {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    align-items: stretch;
+}
+
+.card-projeto {
+    background: #fff;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.card-projeto img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.card-conteudo {
+    padding: 20px;
+
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+}
+
+.card-conteudo h3 {
+    margin: 0;
+
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.projetos {
+    padding: 27px 9.5% 30px;
+
+    background: #062a54;
+}
+
+.projetos-topo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.projetos h2 {
+    color: white;
+
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.botao-projetos {
+    padding: 8px 16px;
+
+    border: 1px solid #009ef0;
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.botao-projetos:hover {
+    background: #079eea;
+}
+
+.cards-projetos {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 17px;
+}
+
+.card-projeto {
+    overflow: hidden;
+
+    border: 1px solid #007fd1;
+
+    border-radius: 6px;
+
+    background: #07386b;
+
+    transition: .3s;
+}
+
+.card-projeto:hover {
+    transform: translateY(-5px);
+}
+
+.card-projeto img {
+    height: 102px;
+
+    object-fit: cover;
+}
+
+.card-conteudo {
+    min-height: 78px;
+
+    padding: 9px 13px;
+}
+
+.card-conteudo h3 {
+    color: white;
+
+    font-size: 11px;
+    line-height: 1.25;
+
+    margin-bottom: 11px;
+}
+
+.card-conteudo a {
+    color: #00a4f5;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   NOTÍCIAS
+===================================================== */
+
+.noticias {
+    padding: 28px 9.5% 30px;
+
+    background: #ffffff;
+}
+
+.noticias-topo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 17px;
+}
+
+.noticias h2 {
+    color: #092d57;
+
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.todas-noticias {
+    color: #0067c7;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.lista-noticias {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.noticia {
+    display: flex;
+
+    gap: 13px;
+
+    min-height: 90px;
+
+    padding-right: 20px;
+
+    border-right: 1px solid #e1e5e9;
+}
+
+.noticia:last-child {
+    border-right: none;
+}
+
+.noticia img {
+    width: 120px;
+    height: 82px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 5px;
+}
+
+.noticia h3 {
+    color: #0c477d;
+
+    font-size: 10px;
+    line-height: 1.3;
+
+    margin-bottom: 5px;
+}
+
+.noticia span {
+    color: #7b8792;
+
+    font-size: 8px;
+}
+
+.noticia p {
+    color: #315778;
+
+    font-size: 9px;
+    line-height: 1.4;
+
+    margin-top: 6px;
+}
+
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+.rodape {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    background: #092e5b;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE - TABLETS
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .cabecalho {
+        padding-left: 65px;
+        padding-right: 15px;
+    }
+
+    .cabecalho .logo h1 {
+        font-size: 15px;
+    }
+
+    .cabecalho .menu {
+        gap: 18px;
+    }
+
+    .banner,
+    .sobre,
+    .projetos,
+    .noticias {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .cards-projetos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lista-noticias {
+        grid-template-columns: 1fr;
+    }
+
+    .noticia {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 15px;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE - CELULARES
+===================================================== */
+
+@media (max-width: 750px) {
+
+    .cabecalho {
+        min-height: 55px;
+        height: auto;
+
+        padding: 7px 10px 7px 45px;
+
+        flex-direction: row;
+
+        gap: 10px;
+    }
+
+    .cabecalho .logo {
+        text-align: left;
+    }
+
+    .cabecalho .logo h1 {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .cabecalho .logo p {
+        font-size: 9px;
+    }
+
+    .cabecalho .menu {
+        gap: 9px;
+
+        flex-wrap: wrap;
+
+        justify-content: flex-end;
+    }
+
+    .cabecalho .menu a {
+        font-size: 7px;
+    }
+
+    .cabecalho .menu-btn {
+        top: 50%;
+
+        transform: translateY(-50%);
+    }
+
+    .cabecalho .menu-btn:hover {
+        transform: translateY(-50%);
+    }
+
+    .banner {
+        min-height: 420px;
+
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .banner-conteudo {
+        width: 100%;
+    }
+
+    .banner h2 {
+        font-size: 34px;
+    }
+
+    .frase-banner {
+        display: none;
+    }
+
+    .sobre {
+        flex-direction: column;
+    }
+
+    .sobre-texto,
+    .imagem-sobre {
+        width: 100%;
+    }
+
+    .informacoes {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+
+        padding-bottom: 10px;
+        margin-right: 0;
+    }
+
+    .cards-projetos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =====================================================
+   AJUSTES FINAIS
+===================================================== */
+
+.titulo-secao p {
+    color: white;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE - TELAS PEQUENAS
+===================================================== */
+
+@media (max-width: 500px) {
+
+    .cabecalho {
+        padding-left: 42px;
+        padding-right: 8px;
+    }
+
+    .cabecalho .logo h1 {
+        font-size: 11px;
+    }
+
+    .cabecalho .logo p {
+        font-size: 9px;
+    }
+
+    .cabecalho .menu {
+        gap: 7px;
+    }
+
+    .cabecalho .menu a {
+        font-size: 7px;
+    }
+
+    .banner h2 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 13px;
+    }
+
+    .cards-projetos {
+        grid-template-columns: 1fr;
+    }
+
+    .projetos-topo,
+    .noticias-topo {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .noticia {
+        flex-direction: column;
+    }
+
+    .noticia img {
+        width: 100%;
+        height: 150px;
+    }
+}
+
+/* =====================================================
+   AJUSTE DE TAMANHO DO CABEÇALHO
+===================================================== */
+
+.cabecalho {
+    height: 55px;
+    padding-left: 98px;
+    padding-right: 25px;
+}
+
+/* NOME DO PORTAL */
+
+.cabecalho .logo h1 {
+    font-size: 21px;
+    line-height: 23px;
+    font-weight: 800;
+}
+
+.cabecalho .logo p {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* LINKS DO CABEÇALHO */
+
+.cabecalho .menu {
+    gap: 38px;
+}
+
+.cabecalho .menu a {
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/* BOTÃO HAMBÚRGUER */
+
+.cabecalho .menu-btn {
+    width: 25px;
+    height: 34px;
+
+    left: 7px;
+    top: 10px;
+
+    font-size: 26px;
+}
+
+/* TELAS MENORES */
+
+@media (max-width: 750px) {
+
+    .cabecalho {
+        min-height: 60px;
+        padding-left: 45px;
+    }
+
+    .cabecalho .logo h1 {
+        font-size: 15px;
+    }
+
+    .cabecalho .logo p {
+        font-size: 11px;
+    }
+
+    .cabecalho .menu {
+        gap: 10px;
+    }
+
+    .cabecalho .menu a {
+        font-size: 8px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .cabecalho .logo h1 {
+        font-size: 12px;
+    }
+
+    .cabecalho .menu {
+        gap: 7px;
+    }
+
+    .cabecalho .menu a {
+        font-size: 7px;
+    }
+
+}
+/* NOME DO PORTAL */
+.logo2 h1 {
+    margin: 0;
+    color: #174d35;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo2 p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+/* MENU */
+.menu2 {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.menu2 a {
+    text-decoration: none;
+    color: #666;
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.menu2 a:hover {
+    color: #174d35;
+}

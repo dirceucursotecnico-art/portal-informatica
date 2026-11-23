@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Portal do Técnico em Informática</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="cabecalho">
+
+    <div class="logo">
+        <h1>PORTAL DO TÉCNICO EM INFORMÁTICA</h1>
+        <p>Escola Estadual Maria Barbosa Leite</p>
+    </div>
+
+  <nav class="menu">
+    <a href="escola.html">ESCOLA</a>
+    <a href="curso.html">SOBRE O CURSO</a>
+    <a href="projetos.html">PROJETOS</a>
+    <a href="noticias/noticias.html">NOTÍCIAS</a>
+</nav>
+
+</header>
+
+<button class="menu-btn" onclick="abrirMenu()">☰</button>
+
+<div id="menuLateral" class="menu-lateral">
+    <button class="fechar-btn" onclick="fecharMenu()">✕</button>
+
+    <a href="gmail.html">✉️ E-mail para contato</a>
+    <a href="telefone.html">📞 Telefone para contato</a>
+    <a href="sobre.html">ℹ️ Sobre o site</a>
+    <a href="tutorial-github.html">🐙 Publicar projeto no GitHub</a>
+    <a href="tutorial-vercel.html">🚀 Publicar site na Vercel</a>
+    <a href="tutorial-supabase.html">🗄️ Usar banco no Supabase</a>
+    <a href="fale-conosco.html">💬 Fale Conosco</a>
+</div>
+
+<div class="banner-conteudo">
+    <div class="quadro">
+        <h2>PREPARA-SE PARA O FUTURO</h2>
+        <h1>TÉCNICO EM INFORMÁTICA</h1>
+        <h2>
+            Conheça o curso e aprenda programação, desenvolvimento
+            de sites, manutenção de computadores, robótica e muito mais.
+        </h2>
+
+        <a href="curso.html" class="botao">Conheça o curso</a>
+    </div>
+</div>
+
+<div class="quadro-atualidades">
+    <h2>ATUALIDADES</h2>
+
+    <div id="noticias-informatica"></div>
+
+    <a href="https://g1.globo.com/tecnologia/"
+       target="_blank" rel="noopener noreferrer"
+       class="link-noticias">
+        <img src="camerrrr.png">
+    </a>
+
+    <p></p>
+
+    <a href="https://olhardigital.com.br/"
+       target="_blank" rel="noopener noreferrer"
+       class="link-noticias">
+        <img src="camerr.png">
+    </a>
+
+    <p></p>
+
+    <a href="https://exame.com/inteligencia-artificial/"
+       target="_blank" rel="noopener noreferrer"
+       class="link-noticias">
+        <img src="exame2.png">
+    </a>
+
+    <p></p>
+
+    <a href="https://iabrasilnoticias.com.br/"
+       target="_blank" rel="noopener noreferrer"
+       class="link-noticias">
+        <img src="ia1.png">
+    </a>
+</div>
+
+<div class="robo-container">
+    <img src="robo.png"
+         alt="Robô do curso Técnico em Informática"
+         class="robo-imagem">
+</div>
+
+<footer class="rodape">
+    <div class="rodape-final">
+        <p>
+            © 2026 Escola Estadual Maria Barbosa Leite -
+            Técnico em Informática. Desenvolvedores: 3° ano EMTI-2026
+        </p>
+    </div>
+</footer>
+
+<!-- ACESSO ADMINISTRATIVO DISCRETO -->
+<details class="login-lateral">
+
+    <summary>Área Administrativa</summary>
+
+    <div class="login-conteudo">
+
+        <h2>Área Administrativa</h2>
+        <p>Entre para acessar o painel</p>
+
+        <form onsubmit="entrarAdmin(event)">
+
+            <label for="email">E-mail</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Digite seu e-mail"
+                required
+            >
+
+            <label for="senha">Senha</label>
+            <input
+                type="password"
+                id="senha"
+                placeholder="Digite sua senha"
+                required
+            >
+
+            <button type="submit" class="btn-entrar">
+                ENTRAR
+            </button>
+
+        </form>
+
+    </div>
+
+</details>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

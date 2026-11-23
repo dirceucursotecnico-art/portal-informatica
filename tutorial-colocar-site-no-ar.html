@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial – Como Colocar o Site no Ar</title>
+<style>
+@page { margin: 18mm 15mm; }
+body { font-family: Arial, sans-serif; color:#243447; line-height:1.55; font-size:12pt; }
+h1 { color:#174d35; border-bottom:3px solid #174d35; padding-bottom:8px; }
+h2 { color:#174d35; margin-top:24px; border-bottom:1px solid #bcd0c4; padding-bottom:5px; }
+h3 { color:#2f6b4f; }
+pre { background:#f3f5f4; border-left:4px solid #174d35; padding:12px; white-space:pre-wrap; font-size:9.5pt; }
+code { font-family: Consolas, monospace; }
+ul, ol { margin-top:6px; }
+.aviso { background:#fff4d6; border:1px solid #d8b968; padding:12px; border-radius:6px; }
+.destaque { background:#edf5f0; border-radius:6px; padding:12px; margin:12px 0; }
+.small { font-size:9pt; color:#666; }
+</style>
+</head>
+<body>
+<h1>Como colocar o site no ar</h1>
+<p><strong>Projeto:</strong> Portal do Técnico em Informática – Maria Barbosa Leite<br>
+<strong>Objetivos:</strong> publicar o site na internet e configurar PHP e MySQL</p>
+
+<h2>Opções de publicação</h2>
+<div class="destaque">
+<strong>Hospedagem escolar ou local:</strong> usa o computador com XAMPP e o endereço <code>localhost</code>. Funciona somente dentro da rede do equipamento ou da escola.<br>
+<strong>Hospedagem profissional:</strong> usa um provedor de internet, permite acesso público e domínio próprio.
+</div>
+
+<h2>Parte 1 – Preparar o site localmente</h2>
+<ol>
+<li>Confirme que todos os arquivos estão dentro de <code>C:\xampp\htdocs\Projetos</code>.</li>
+<li>Abra o XAMPP.</li>
+<li>Inicie <strong>Apache</strong> e <strong>MySQL</strong>.</li>
+<li>Acesse <code>http://localhost/Projetos/index.html</code>.</li>
+<li>Teste todas as páginas, menus, imagens, links e o formulário Fale Conosco.</li>
+<li>Em todas as páginas HTML, mantenha:</li>
+</ol>
+<pre>&lt;meta charset="UTF-8"&gt;</pre>
+
+<h2>Parte 2 – Preparar os arquivos</h2>
+<h3>Arquivos necessários</h3>
+<ul>
+<li>Arquivos HTML.</li>
+<li>Arquivos CSS.</li>
+<li>Arquivos JavaScript, caso existam.</li>
+<li>Arquivos PHP, como <code>contato.php</code>.</li>
+<li>Imagens utilizadas pelo site.</li>
+</ul>
+
+<h3>Verificar os caminhos</h3>
+<p>Prefira barras normais em links e arquivos:</p>
+<pre>&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;img src="imagens/robo.png"&gt;
+&lt;a href="noticias/noticias.html"&gt;Notícias&lt;/a&gt;</pre>
+
+<div class="aviso">
+Não utilize caminhos absolutos do computador, como <code>C:\xampp\htdocs\Projetos</code>, em links HTML ou CSS.
+</div>
+
+<h2>Parte 3 – Publicar com servidor local acessível na rede</h2>
+<p>Esse método permite testar em celulares ou computadores da mesma rede.</p>
+<ol>
+<li>Abra o XAMPP e confirme que Apache e MySQL estão iniciados.</li>
+<li>Abra o Prompt de Comando.</li>
+<li>Digite:</li>
+</ol>
+<pre>ipconfig</pre>
+<ol start="4">
+<li>Copie o endereço IPv4, por exemplo: <code>192.168.1.25</code>.</li>
+<li>No celular ou outro computador da mesma rede, acesse:</li>
+</ol>
+<pre>http://192.168.1.25/Projetos/index.html</pre>
+
+<h3>Se não conseguir acessar</h3>
+<ol>
+<li>Abra <strong>Painel de Controle do Windows</strong>.</li>
+<li>Acesse <strong>Firewall do Windows Defender</strong>.</li>
+<li>Abra <strong>Configurações avançadas</strong>.</li>
+<li>Permita o Apache na rede privada.</li>
+<li>Confirme que todos os dispositivos estão no mesmo Wi-Fi.</li>
+</ol>
+
+<div class="aviso">
+A rede pode desconectar o computador da hospedagem local. Além disso, este método não oferece domínio público ou certificado HTTPS automático.
+</div>
+
+<h2>Parte 4 – Publicar em hospedagem profissional</h2>
+<ol>
+<li>Escolha uma hospedagem que ofereça PHP e MySQL.</li>
+<li>Registre um domínio, caso deseje um endereço próprio.</li>
+<li>Acesse o painel da hospedagem, como cPanel ou hPanel.</li>
+<li>Abra o Gerenciador de Arquivos.</li>
+<li>Entre na pasta pública do site. Normalmente é chamada <code>public_html</code>, <code>www</code> ou <code>htdocs</code>.</li>
+<li>Envie os arquivos do projeto para essa pasta.</li>
+</ol>
+
+<h3>Estrutura correta</h3>
+<pre>public_html/
+├── index.html
+├── style.css
+├── fale-conosco.html
+├── contato.css
+├── contato.php
+├── imagens/
+└── demais páginas e arquivos</pre>
+
+<h2>Parte 5 – Criar o banco no servidor</h2>
+<ol>
+<li>No painel da hospedagem, abra <strong>MySQL / phpMyAdmin</strong>.</li>
+<li>Crie o banco de dados, por exemplo: <code>portal_mbl</code>.</li>
+<li>Crie um usuário específico para o banco.</li>
+<li>Defina uma senha forte.</li>
+<li>Conceda ao usuário todas as permissões no banco.</li>
+<li>Atualize os dados de conexão no arquivo PHP.</li>
+</ol>
+
+<h3>Exemplo de conexão segura</h3>
+<pre>$servidor = 'localhost';
+$usuario = 'usuario_da_hospedagem';
+$senha = 'senha_forte_do_banco';
+$banco = 'portal_mbl';
+
+$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
+
+if ($mysqli-&gt;connect_error) {
+    exit('Erro na conexão com o banco de dados.');
+}
+
+$mysqli-&gt;set_charset('utf8mb4');</pre>
+
+<div class="aviso">
+No código publicado, nunca use dados reais em vídeos, prints ou materiais públicos. Troque sempre os dados do servidor pelo que foi fornecido pela hospedagem.
+</div>
+
+<h2>Parte 6 – Criar a tabela no servidor</h2>
+<p>Entre no phpMyAdmin da hospedagem, selecione o banco e execute:</p>
+<pre>CREATE TABLE contatos (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    mensagem VARCHAR(1000) NOT NULL,
+    data_envio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;</pre>
+
+<h2>Parte 7 – Configurar domínio e HTTPS</h2>
+<ol>
+<li>No painel da hospedagem, adicione o domínio.</li>
+<li>Configure os DNS fornecidos pelo provedor.</li>
+<li>Ative o certificado SSL/HTTPS.</li>
+<li>Aguarde a ativação do DNS e do certificado.</li>
+<li>Acesse o site usando <code>https://seudominio.com.br</code>.</li>
+</ol>
+
+<h2>Parte 8 – Testar no servidor público</h2>
+<ol>
+<li>Abra o site pelo endereço público.</li>
+<li>Teste todas as páginas internas.</li>
+<li>Teste o Fale Conosco em celular e computador.</li>
+<li>Envie uma mensagem de teste.</li>
+<li>Abra o phpMyAdmin e confira a nova linha em <code>contatos</code>.</li>
+<li>Confirme acentuação, imagens e links.</li>
+</ol>
+
+<h2>Checklist final</h2>
+<ul>
+<li>□ Apache/PHP estão funcionando.</li>
+<li>□ MySQL está disponível.</li>
+<li>□ Banco de dados e usuário foram criados.</li>
+<li>□ Dados de conexão estão corretos.</li>
+<li>□ Tabela <code>contatos</code> existe.</li>
+<li>□ Os arquivos estão na pasta pública.</li>
+<li>□ Links usam barras normais.</li>
+<li>□ Todas as páginas têm <code>UTF-8</code>.</li>
+<li>□ PHP usa <code>utf8mb4</code>.</li>
+<li>□ O domínio redireciona para HTTPS.</li>
+<li>□ Formulário foi enviado e salvo no banco.</li>
+<li>□ Site foi testado em celular e computador.</li>
+</ul>
+
+<h2>Problemas comuns</h2>
+<h3>Erro 404 – Página não encontrada</h3>
+<p>Confirme o nome da pasta, a primeira letra maiúscula ou minúscula e os nomes dos arquivos.</p>
+
+<h3>Erro de conexão ao banco</h3>
+<p>Confirme servidor, usuário, senha, nome do banco e permissão do usuário.</p>
+
+<h3>Dados sem acentuação</h3>
+<p>Use <code>UTF-8</code> no HTML, <code>utf8mb4</code> no PHP, banco e tabela com codificação <code>utf8mb4_unicode_ci</code>.</p>
+
+<h3>Página PHP mostra o código-fonte</h3>
+<p>A hospedagem não está interpretando PHP ou o arquivo não foi enviado como <code>.php</code>. A função PHP deve ser fornecida pelo servidor.</p>
+
+<h3>Mensagens não são gravadas</h3>
+<p>Verifique permissões do banco, existência da tabela, campos do formulário e nome dos campos no <code>$_POST</code>.</p>
+
+<p class="small">Tutorial para publicação local ou profissional de sites com HTML, CSS, PHP e MySQL.</p>
+</body>
+</html>

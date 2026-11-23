@@ -1,0 +1,98 @@
+.pagina-contato {
+    min-height: 100vh;
+    background: linear-gradient(rgba(245,248,246,.92), rgba(245,248,246,.92)), url("informatica.jpeg") center/cover fixed;
+}
+
+.contato-container {
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    padding: 140px 20px 90px;
+    box-sizing: border-box;
+}
+
+.contato-card {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 32px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.15);
+}
+
+.contato-card h1 {
+    margin: 12px 0 6px;
+    color: #174d35;
+}
+
+.contato-card > p {
+    margin: 0 0 24px;
+    color: #666;
+}
+
+.contato-voltar {
+    color: #174d35;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contato-form {
+    display: grid;
+    gap: 16px;
+}
+
+.campo-contato {
+    display: grid;
+    gap: 7px;
+}
+
+.campo-contato label {
+    color: #174d35;
+    font-weight: bold;
+}
+
+.campo-contato input,
+.campo-contato textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd8d1;
+    border-radius: 8px;
+    padding: 12px;
+    font: inherit;
+}
+
+.campo-contato textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.campo-contato input:focus,
+.campo-contato textarea:focus {
+    outline: none;
+    border-color: #174d35;
+    box-shadow: 0 0 0 3px rgba(23,77,53,.12);
+}
+
+.contato-botao {
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    background: #174d35;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contato-botao:hover {
+    background: #2f6b4f;
+}
+
+@media (max-width: 600px) {
+    .contato-container {
+        padding: 125px 12px 80px;
+    }
+
+    .contato-card {
+        padding: 22px 16px;
+    }
+}

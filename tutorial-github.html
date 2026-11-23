@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como adicionar um projeto ao GitHub</title>
+<style>
+@page { margin: 18mm 15mm; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; color: #243447; line-height: 1.55; font-size: 12pt; background: #f7faf8; }
+main { max-width: 900px; margin: 24px auto; background: white; border-radius: 10px; padding: 36px; box-shadow: 0 4px 20px rgba(23,77,53,.10); }
+h1 { color: #174d35; border-bottom: 3px solid #174d35; padding-bottom: 8px; }
+h2 { color: #174d35; margin-top: 28px; border-bottom: 1px solid #bcd0c4; padding-bottom: 5px; }
+h3 { color: #2f6b4f; }
+pre { background: #111827; color: #f8fafc; border-radius: 6px; padding: 14px; white-space: pre-wrap; font-size: 9.5pt; overflow-wrap: anywhere; }
+code { font-family: Consolas, monospace; }
+ol, ul { margin-top: 6px; }
+.aviso { background: #fff4d6; border: 1px solid #d8b968; padding: 12px; border-radius: 6px; }
+.destaque { background: #edf5f0; border-left: 5px solid #174d35; border-radius: 6px; padding: 12px 16px; margin: 12px 0; }
+.passos { counter-reset: item; list-style: none; padding-left: 0; }
+.passos li { counter-increment: item; margin: 14px 0; padding: 12px 14px 12px 58px; position: relative; background: #f5f8f6; border-radius: 8px; }
+.passos li::before { content: counter(item); position: absolute; left: 14px; top: 12px; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background: #174d35; color: white; font-weight: bold; }
+.small { font-size: 9pt; color: #666; }
+a { color: #174d35; }
+@media (max-width: 700px) { main { margin: 0; border-radius: 0; padding: 22px 16px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Como colocar o projeto no GitHub</h1>
+<p><strong>Projeto:</strong> Portal do Técnico em Informática – Escola Maria Barbosa Leite</p>
+
+<div class="destaque">
+Este tutorial mostra como enviar a pasta <code>Projetos</code> para o GitHub e como enviar novas atualizações depois.
+</div>
+
+<h2>1. Instalar o Git</h2>
+<ol class="passos">
+<li>Acesse <a href="https://git-scm.com/download/win" target="_blank" rel="noopener noreferrer">git-scm.com/download/win</a>.</li>
+<li>Baixe e instale o Git para Windows.</li>
+<li>Mantenha as opções padrão durante a instalação.</li>
+<li>Feche e abra novamente o VS Code.</li>
+</ol>
+
+<p>Abra o terminal com <strong>Ctrl + J</strong> e confirme a instalação:</p>
+<pre>git --version</pre>
+
+<h2>2. Criar uma conta no GitHub</h2>
+<ol class="passos">
+<li>Acesse <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a>.</li>
+<li>Clique em <strong>Sign up</strong> ou <strong>Criar conta</strong>.</li>
+<li>Informe seu e-mail, senha e nome de usuário.</li>
+<li>Confirme o e-mail caso o GitHub solicite.</li>
+</ol>
+
+<h2>3. Criar o repositório</h2>
+<ol class="passos">
+<li>Entre no GitHub.</li>
+<li>Clique em <strong>New</strong> ou no ícone <strong>+</strong> no canto superior direito.</li>
+<li>Escolha <strong>New repository</strong>.</li>
+<li>Digite um nome, por exemplo <code>portal-informatica</code>.</li>
+<li>Escolha <strong>Public</strong> ou <strong>Private</strong>.</li>
+<li>Não marque <strong>Add a README file</strong> neste primeiro momento.</li>
+<li>Clique em <strong>Create repository</strong>.</li>
+</ol>
+
+<h2>4. Abrir a pasta correta no VS Code</h2>
+<ol>
+<li>Abra o VS Code.</li>
+<li>Clique em <strong>Arquivo</strong> e depois em <strong>Abrir Pasta</strong>.</li>
+<li>Selecione <code>C:\xampp\htdocs\Projetos</code>.</li>
+<li>Abra o terminal com <strong>Ctrl + J</strong>.</li>
+</ol>
+
+<div class="aviso">
+O terminal deve estar dentro da pasta do projeto antes de executar os comandos.
+</div>
+
+<h2>5. Enviar o projeto pela primeira vez</h2>
+<p>Execute os comandos abaixo, um por vez:</p>
+<pre>git init
+git add .
+git commit -m "Primeira publicação do projeto"
+git branch -M main</pre>
+
+<p>Na página criada no GitHub, copie o endereço <strong>HTTPS</strong>. Será parecido com:</p>
+<pre>https://github.com/SEU-USUARIO/portal-informatica.git</pre>
+
+<p>Substitua <code>SEU-USUARIO</code> pelo nome da sua conta e execute:</p>
+<pre>git remote add origin https://github.com/SEU-USUARIO/portal-informatica.git
+git push -u origin main</pre>
+
+<ul>
+<li><code>git init</code> prepara o controle de versões.</li>
+<li><code>git add .</code> seleciona todos os arquivos.</li>
+<li><code>git commit</code> salva uma versão no computador.</li>
+<li><code>git remote add origin</code> conecta ao repositório do GitHub.</li>
+<li><code>git push</code> envia os arquivos para a internet.</li>
+</ul>
+
+<div class="aviso">
+Na primeira autenticação, o navegador pode pedir autorização. Entre na mesma conta usada para criar o repositório.
+</div>
+
+<h2>6. Conferir os arquivos</h2>
+<ol>
+<li>Atualize a página do repositório no GitHub.</li>
+<li>Verifique se os arquivos HTML, CSS e JavaScript apareceram.</li>
+<li>Abra o <code>index.html</code> para conferir o projeto.</li>
+<li>Se o commit e o nome da conta aparecerem, o envio foi concluído.</li>
+</ol>
+
+<h2>7. Enviar novas alterações</h2>
+<p>Depois de alterar e salvar um arquivo no VS Code, execute:</p>
+<pre>git add .
+git commit -m "Atualização do site"
+git push</pre>
+
+<h3>Outra forma usando os botões do VS Code</h3>
+<ol>
+<li>Abra <strong>Controle de Código-fonte</strong>.</li>
+<li>Confira os arquivos alterados.</li>
+<li>Clique no <strong>+</strong> ao lado de <strong>Alterações</strong>.</li>
+<li>Escreva uma mensagem curta no campo superior.</li>
+<li>Clique em <strong>Confirmar</strong>.</li>
+<li>Clique em <strong>Sincronizar alterações</strong>.</li>
+</ol>
+
+<h2>Antes de enviar</h2>
+<p>Não envie senhas, chaves, arquivos <code>.env</code>, dados pessoais ou informações secretas.</p>
+<p>Arquivos PHP podem ser enviados, mas verifique se não existe senha ou chave dentro do código.</p>
+
+<h2>Problemas comuns</h2>
+<h3>O Git não foi reconhecido</h3>
+<p>Feche todo o VS Code, abra-o novamente e teste <code>git --version</code>.</p>
+
+<h3>Erro de autenticação</h3>
+<p>Autorize o Git Credential Manager pelo navegador. Não digite a senha do GitHub na barra de endereço.</p>
+
+<h3>O push foi rejeitado</h3>
+<p>Execute:</p>
+<pre>git pull --rebase origin main
+git push</pre>
+
+<h3>Já existe um repositório Git na pasta</h3>
+<p>Não execute <code>git init</code> novamente. Execute apenas os comandos de adição, commit e push.</p>
+
+<h3>Alteração não apareceu no GitHub</h3>
+<p>Confirme que o arquivo foi salvo, adicionado com <code>git add .</code>, confirmado com <code>git commit</code> e enviado com <code>git push</code>.</p>
+
+<h2>Checklist final</h2>
+<ul>
+<li>□ Conta criada no GitHub.</li>
+<li>□ Git instalado no computador.</li>
+<li>□ Repositório criado no GitHub.</li>
+<li>□ Pasta correta aberta no VS Code.</li>
+<li>□ Arquivos adicionados e enviados.</li>
+<li>□ Projeto aparece no repositório.</li>
+<li>□ Nenhuma senha ou chave foi enviada.</li>
+</ul>
+
+<p class="small">Tutorial para enviar e atualizar um projeto no GitHub usando o VS Code.</p>
+</main>
+</body>
+</html>

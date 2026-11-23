@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Administrativo</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+        .campo-desativado label {
+            color: #8b929a;
+        }
+
+        .campo-desativado input,
+        .campo-desativado textarea {
+            background: #e8ebef !important;
+            color: #8b929a !important;
+            border-color: #cbd1d8 !important;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body class="admin-page">
+
+    <main class="admin-container">
+
+        <!-- CABEÇALHO -->
+        <header class="admin-cabecalho">
+
+            <div class="admin-icone">
+                &lt;/&gt;
+            </div>
+
+            <div>
+                <h1>Painel Administrativo</h1>
+                <p>Gerenciamento do Portal do Técnico em Informática</p>
+            </div>
+
+        </header>
+
+
+        <!-- EDITAR CONTEÚDO -->
+        <section class="painel-card">
+
+            <h2 class="titulo-card">
+                ✎ Editar conteúdo do site
+            </h2>
+
+            <div class="campo">
+
+                <label for="areaEdicao">
+                    Escolha a área que deseja editar:
+                </label>
+
+                <select id="areaEdicao">
+
+                    <optgroup label="Cabeçalho do site">
+
+                        <option value="cabecalhoPortal">
+                            Nome do portal e nome da escola
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- BANNER -->
+
+                    <optgroup label="Banner principal">
+
+                        <option value="bannerIdentificacao">
+                            Identificação do banner
+                        </option>
+
+                        <option value="banner">
+                            Título, descrição e botão do banner
+                        </option>
+
+                        <option value="bannerFrase">
+                            Frase de destaque do banner
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- JEMG -->
+
+                    <optgroup label="Notícia principal / JEMG">
+
+                        <option value="principalIdentificacao">
+                            Identificação da seção - JEMG
+                        </option>
+
+                        <option value="principal">
+                            Título, descrição e imagem do JEMG
+                        </option>
+
+                        <option value="destaque1">
+                            Destaque 1 - Medalha de ouro
+                        </option>
+
+                        <option value="destaque2">
+                            Destaque 2 - Disputa
+                        </option>
+
+                        <option value="destaque3">
+                            Destaque 3 - Abertura e integração
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- PLAYGROUND E QUADRAS -->
+
+                    <optgroup label="Playground e quadras">
+
+                        <option value="projetosTitulo">
+                            Título da seção
+                        </option>
+
+                        <option value="projeto1">
+                            Card 1 - Imagem e descrição
+                        </option>
+
+                        <option value="projeto2">
+                            Card 2 - Imagem e descrição
+                        </option>
+
+                        <option value="projeto3">
+                            Card 3 - Imagem e descrição
+                        </option>
+
+                        <option value="projeto4">
+                            Card 4 - Imagem e descrição
+                        </option>
+
+                        <option value="projeto5">
+                            Card 5 - Imagem e descrição
+                        </option>
+
+                        <option value="projetosTextoFinal">
+                            Texto final da seção
+                        </option>
+
+                        <option value="maisNoticias">
+                            Botão Mais Notícias
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- ÚLTIMAS NOTÍCIAS -->
+
+                    <optgroup label="Últimas notícias">
+
+                        <option value="noticiasTitulo">
+                            Título da seção
+                        </option>
+
+                        <option value="noticia1">
+                            Notícia 1 - Cadeiras
+                        </option>
+
+                        <option value="noticia2">
+                            Notícia 2 - Biblioteca
+                        </option>
+
+                        <option value="noticia3">
+                            Notícia 3 - Pronatec
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- PROJETOS - PÁGINA 1 -->
+
+                    <optgroup label="Projetos - Página 1">
+
+                        <option value="p1HeroIdentificacao">
+                            Identificação pequena do banner
+                        </option>
+
+                        <option value="p1Hero">
+                            Título, descrição e botão do banner
+                        </option>
+
+                        <option value="p1HeroFrase">
+                            Frase de destaque do banner
+                        </option>
+
+                        <option value="p1Apresentacao">
+                            Apresentação dos projetos
+                        </option>
+
+                        <option value="p1Info1">
+                            Informação 1 - Projetos Web
+                        </option>
+
+                        <option value="p1Info2">
+                            Informação 2 - Trabalhos em Grupo
+                        </option>
+
+                        <option value="p1Info3">
+                            Informação 3 - Gincanas
+                        </option>
+
+                        <option value="p1Info4">
+                            Informação 4 - Viagens
+                        </option>
+
+                        <option value="p1Aprendizado">
+                            O que você vai encontrar?
+                        </option>
+
+                        <option value="p1Galeria">
+                            Título, descrição e botão da galeria
+                        </option>
+
+                        <option value="p1Card1">
+                            Projeto 1 - Manutenção Fim de Ano
+                        </option>
+
+                        <option value="p1Card2">
+                            Projeto 2 - Aplicação Java
+                        </option>
+
+                        <option value="p1Card3">
+                            Projeto 3 - Manutenções em Geral
+                        </option>
+
+                        <option value="p1Card4">
+                            Projeto 4 - Alunos Ensinam
+                        </option>
+
+                        <option value="p1Card5">
+                            Projeto 5 - Viagens EEMBL
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- PROJETOS - PÁGINA 2 -->
+
+                    <optgroup label="Projetos - Página 2">
+
+                        <option value="p2HeroIdentificacao">
+                            Identificação pequena do banner
+                        </option>
+
+                        <option value="p2Hero">
+                            Título, descrição e botão do banner
+                        </option>
+
+                        <option value="p2HeroFrase">
+                            Frase de destaque do banner
+                        </option>
+
+                        <option value="p2Apresentacao">
+                            Apresentação dos projetos
+                        </option>
+
+                        <option value="p2Info1">
+                            Informação 1 - Projetos Web
+                        </option>
+
+                        <option value="p2Info2">
+                            Informação 2 - Trabalhos em Grupo
+                        </option>
+
+                        <option value="p2Info3">
+                            Informação 3 - Gincanas
+                        </option>
+
+                        <option value="p2Info4">
+                            Informação 4 - Viagens
+                        </option>
+
+                        <option value="p2Aprendizado">
+                            O que você vai encontrar?
+                        </option>
+
+                        <option value="p2Galeria">
+                            Título e descrição da galeria
+                        </option>
+
+                        <option value="p2Card1">
+                            Projeto 1 - Gincana 2024
+                        </option>
+
+                        <option value="p2Card2">
+                            Projeto 2 - Gincana 2026
+                        </option>
+
+                        <option value="p2Card3">
+                            Projeto 3 - Notícias
+                        </option>
+
+                        <option value="p2Card4">
+                            Projeto 4 - Redes de Computadores
+                        </option>
+
+                        <option value="p2Card5">
+                            Projeto 5 - Algoritmos e Programação
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- RODAPÉ -->
+
+                    <optgroup label="Rodapé do site">
+
+                        <option value="rodape">
+                            Texto do rodapé
+                        </option>
+
+                    </optgroup>
+
+                </select>
+
+            </div>
+
+
+            <!-- IDENTIFICAÇÃO -->
+
+            <div class="campo">
+
+                <label for="identificacao">
+                    Identificação pequena:
+                </label>
+
+                <input
+                    type="text"
+                    id="identificacao"
+                    placeholder="Exemplo: PROJETOS"
+                >
+
+            </div>
+
+
+            <!-- TÍTULO -->
+
+            <div class="campo">
+
+                <label for="titulo">
+                    Título:
+                </label>
+
+                <input
+                    type="text"
+                    id="titulo"
+                    placeholder="Digite o título"
+                >
+
+            </div>
+
+
+            <!-- DESCRIÇÃO -->
+
+            <div class="campo">
+
+                <label for="descricao">
+                    Descrição ou texto:
+                </label>
+
+                <textarea
+                    id="descricao"
+                    placeholder="Digite a descrição"
+                ></textarea>
+
+            </div>
+
+
+            <!-- COMPLEMENTO -->
+
+            <div class="campo">
+
+                <label for="complemento">
+                    Texto complementar:
+                </label>
+
+                <textarea
+                    id="complemento"
+                    placeholder="Digite o texto complementar"
+                ></textarea>
+
+            </div>
+
+
+            <!-- TEXTO DO BOTÃO -->
+
+            <div class="campo">
+
+                <label for="botao">
+                    Texto do botão:
+                </label>
+
+                <input
+                    type="text"
+                    id="botao"
+                    placeholder="Digite o texto do botão"
+                >
+
+            </div>
+
+
+            <!-- IMAGEM -->
+
+            <div class="campo">
+
+                <label for="imagem">
+                    Imagem:
+                </label>
+
+                <input
+                    type="text"
+                    id="imagem"
+                    placeholder="Exemplo: projeto.jpg"
+                >
+
+                <p class="ajuda">
+                    ⓘ Informe o nome do arquivo ou o caminho relativo
+                    da imagem. O arquivo precisa estar na pasta do site.
+                </p>
+
+            </div>
+
+
+            <!-- LINK -->
+
+            <div class="campo">
+
+                <label for="link">
+                    Link de destino:
+                </label>
+
+                <input
+                    type="text"
+                    id="link"
+                    placeholder="Exemplo: projeto.html ou #curso"
+                >
+
+                <p class="ajuda">
+                    ⓘ Informe a página ou o endereço que será aberto
+                    ao clicar no botão ou card.
+                </p>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <div class="acoes">
+
+                <button
+                    type="button"
+                    class="btn-principal"
+                    onclick="salvarConteudo()"
+                >
+                    ▣ Salvar alterações
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-secundario"
+                    onclick="restaurarOriginais()"
+                >
+                    ↻ Restaurar informações originais
+                </button>
+
+            </div>
+
+            <p id="mensagem"></p>
+
+        </section>
+
+
+        <!-- ADICIONAR NOTÍCIA -->
+
+        <section class="painel-card">
+
+            <h2 class="titulo-card">
+                ✚ Adicionar nova notícia
+            </h2>
+
+            <div class="campo">
+
+                <label for="novaNoticiaTitulo">
+                    Título da notícia:
+                </label>
+
+                <input
+                    type="text"
+                    id="novaNoticiaTitulo"
+                    placeholder="Digite o título"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="novaNoticiaDescricao">
+                    Descrição da notícia:
+                </label>
+
+                <textarea
+                    id="novaNoticiaDescricao"
+                    placeholder="Digite a descrição"
+                ></textarea>
+
+            </div>
+
+            <div class="campo">
+
+                <label for="novaNoticiaImagem">
+                    Imagem da notícia:
+                </label>
+
+                <input
+                    type="text"
+                    id="novaNoticiaImagem"
+                    placeholder="Exemplo: evento.jpg"
+                >
+
+                <p class="ajuda">
+                    ⓘ A imagem deve estar na pasta do site.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn-principal"
+                onclick="adicionarNoticia()"
+            >
+                ✚ Adicionar notícia
+            </button>
+
+            <p id="mensagemNovaNoticia"></p>
+
+        </section>
+
+
+        <!-- GERENCIAR NOTÍCIAS -->
+
+        <section class="painel-card">
+
+            <h2 class="titulo-card">
+                ☷ Gerenciar notícias cadastradas
+            </h2>
+
+            <p class="texto-gerenciamento">
+                Edite ou exclua as notícias existentes e as novas notícias cadastradas.
+            </p>
+
+            <div id="gerenciarNoticias"></div>
+
+        </section>
+
+
+        <!-- GERENCIAR PROJETOS -->
+
+        <section class="painel-card">
+
+            <h2 class="titulo-card">
+                ☷ Gerenciar projetos cadastrados
+            </h2>
+
+            <p class="texto-gerenciamento">
+                Aqui serão exibidos os projetos das duas páginas para edição e exclusão.
+            </p>
+
+            <div id="gerenciarProjetos"></div>
+
+        </section>
+
+
+        <!-- ADICIONAR PROJETO -->
+
+        <section class="painel-card">
+
+            <h2 class="titulo-card">
+                ✚ Adicionar novo projeto
+            </h2>
+
+            <div class="campo">
+
+                <label for="paginaNovoProjeto">
+                    Escolha a página:
+                </label>
+
+                <select id="paginaNovoProjeto">
+
+                    <option value="projetos1">
+                        Página 1 - Projetos
+                    </option>
+
+                    <option value="projetos2">
+                        Página 2 - Mais Projetos
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="campo">
+
+                <label for="novoProjetoTitulo">
+                    Título do projeto:
+                </label>
+
+                <input
+                    type="text"
+                    id="novoProjetoTitulo"
+                    placeholder="Digite o título"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="novoProjetoDescricao">
+                    Descrição do projeto:
+                </label>
+
+                <textarea
+                    id="novoProjetoDescricao"
+                    placeholder="Digite a descrição"
+                ></textarea>
+
+            </div>
+
+            <div class="campo">
+
+                <label for="novoProjetoImagem">
+                    Imagem do projeto:
+                </label>
+
+                <input
+                    type="text"
+                    id="novoProjetoImagem"
+                    placeholder="Exemplo: projeto.jpg"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="novoProjetoLink">
+                    Link de destino:
+                </label>
+
+                <input
+                    type="text"
+                    id="novoProjetoLink"
+                    placeholder="Exemplo: projeto.html"
+                >
+
+            </div>
+
+            <button
+                type="button"
+                class="btn-principal"
+                onclick="adicionarProjeto()"
+            >
+                ✚ Adicionar projeto
+            </button>
+
+            <p id="mensagemNovoProjeto"></p>
+
+        </section>
+
+
+        <!-- SAIR DO PAINEL -->
+
+        <button
+            type="button"
+            class="btn-sair"
+            onclick="sairAdmin()"
+        >
+            ⇥ Sair do painel
+        </button>
+
+    </main>
+
+
+    <script src="script.js"></script>
+    <script src="integracao.js"></script>
+
+</body>
+</html>
