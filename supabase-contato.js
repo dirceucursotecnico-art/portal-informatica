@@ -1,38 +1,54 @@
 const SUPABASE_URL = 'https://gsmgxmlemmwqpisfxkpk.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzbWd4bWxlbW13cXBpc2Z4a3BrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTU0NjQ3MDYsImV4cCI6MjExMTA0MDcwNn0.HACc5hKh0ZGncS5UwQ0ReN23nSfo-lmJi5XkR6Nd9us';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const formulario = document.getElementById('contato-form');
+function iniciarFormularioContato() {
+    const formulario = document.getElementById('contato-form');
 
-formulario.addEventListener('submit', async (evento) => {
-    evento.preventDefault();
+    if (!formulario) return;
 
-    const dados = {
-        nome: document.getElementById('nome').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        telefone: document.getElementById('telefone').value.trim(),
-        mensagem: document.getElementById('mensagem').value.trim()
-    };
-
-    if (!dados.nome || !dados.email || !dados.telefone || !dados.mensagem) {
-        alert('Preencha todos os campos.');
+    if (!window.supabase) {
+        alert('Não foi possível carregar o banco de mensagens. Atualize a página e tente novamente.');
         return;
     }
 
-    const botao = formulario.querySelector('button[type="submit"]');
-    botao.disabled = true;
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const { error } = await supabase
-        .from('contatos')
-        .insert([dados]);
+    formulario.addEventListener('submit', async (evento) => {
+        evento.preventDefault();
 
-    if (error) {
-        console.error(error);
-        alert('Não foi possível enviar a mensagem. Tente novamente.');
-    } else {
-        formulario.reset();
-        alert('Mensagem enviada com sucesso!');
-    }
+        const dados = {
+            nome: document.getElementById('nome').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            telefone: document.getElementById('telefone').value.trim(),
+            mensagem: document.getElementById('mensagem').value.trim()
+        };
 
-    botao.disabled = false;
-});
+        if (!dados.nome || !dados.email || !dados.telefone || !dados.mensagem) {
+            alert('Preencha todos os campos.');
+            return;
+        }
+
+        const botao = formulario.querySelector('button[type="submit"]');
+        botao.disabled = true;
+
+        const { error } = await supabase
+            .from('contatos')
+            .insert([dados]);
+
+        if (error) {
+            console.error(error);
+            alert('Não foi possível enviar a mensagem. Tente novamente.');
+        } else {
+            formulario.reset();
+            alert('Mensagem enviada com sucesso!');
+        }
+
+        botao.disabled = false;
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciarFormularioContato);
+} else {
+    iniciarFormularioContato();
+}
